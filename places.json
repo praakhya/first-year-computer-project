@@ -1,0 +1,19 @@
+[
+    {
+        "r": 0,
+        "c": 0,
+        "pic": ["Home"],
+        "message":["   Enter 'P' to PLAY",
+            "   Enter 'Q'/Esc to QUIT"]
+    },
+    {
+        "r": 0,
+        "c": 1,
+        "pic":["Page 1"]
+    },
+    {
+        "r": 2,
+        "c": 1,
+        "pic":["Page 2"]
+    }
+]
