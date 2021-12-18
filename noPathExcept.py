@@ -1,2 +1,0 @@
-class NoPathException(Exception):
-    pass

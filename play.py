@@ -1,8 +1,7 @@
 from place import Place
 import map
-from colorama import Fore, Back, Style
 from termcolor import colored, cprint     # For Termcolor
-from noPathExcept import NoPathException
+from myExceptions import NoPathException, InvalidCommandException
 class Play():
     def __init__(self,map):
         self.map=map
@@ -21,9 +20,11 @@ class Play():
                     self.place=self.map[self.currposr][self.currposc]
                     self.place.printPic()
                 else:
-                    print(colored('quitting', 'yellow', 'on_red', attrs=['blink', 'bold']))
+                    print(colored('quitting', 'yellow', 'on_blue', attrs=['blink', 'bold']))
             except NoPathException:
                 print(colored("Path not available", 'yellow', 'on_red', attrs=['blink', 'bold']))
+            except InvalidCommandException:
+                print(colored("Invalid Command", 'yellow', 'on_red', attrs=['blink', 'bold']))
 
             
     def handleKeys(self,key):
@@ -39,7 +40,7 @@ class Play():
             self.running=False
             return False
         else:
-            return False
+            raise InvalidCommandException 
 
     def moveLeft(self):
         oldc=self.currposc
@@ -73,6 +74,9 @@ class Play():
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
+        print('='*(j+3)) 
+        print(format("Map", " ^"+str(j+3)))
+        print('-'*(j+3))
         for row in range(i):
             for col in range(j):
                 if self.map[row][col]!=0:
@@ -80,6 +84,7 @@ class Play():
                 else:
                     print(' ', end=' ')
             print()
+        print('='*(j+3))
 map=map.populate("places.json")
 p1=Play(map)
 p1.run()    
