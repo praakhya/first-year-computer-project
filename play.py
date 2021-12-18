@@ -2,7 +2,7 @@ from place import Place
 import map
 from colorama import Fore, Back, Style
 from termcolor import colored, cprint     # For Termcolor
-
+from noPathExcept import NoPathException
 class Play():
     def __init__(self,map):
         self.map=map
@@ -15,12 +15,16 @@ class Play():
         self.place.printPic()
         while self.running==True:
             key=input().lower()
-            if self.handleKeys(key):
-                self.place=self.map[self.currposr][self.currposc]
-                self.place.printPic()
-            else:
-                print(Fore.RED + 'some red text') 
-                print(colored('Twinkle Twinkle Little Star', 'yellow', 'on_blue', attrs=['blink', 'bold']))
+            try:
+                returnval=self.handleKeys(key)
+                if returnval:
+                    self.place=self.map[self.currposr][self.currposc]
+                    self.place.printPic()
+                else:
+                    print(colored('quitting', 'yellow', 'on_red', attrs=['blink', 'bold']))
+            except NoPathException:
+                print(colored("Path not available", 'yellow', 'on_red', attrs=['blink', 'bold']))
+
             
     def handleKeys(self,key):
         if key=='left':
@@ -33,13 +37,16 @@ class Play():
             return self.moveUp()
         elif key=='q' or key=='quit':
             self.running=False
+            return False
+        else:
+            return False
 
     def moveLeft(self):
         oldc=self.currposc
         self.currposc-=1
         if (self.currposc<0) or (self.map[self.currposr][self.currposc]==0):
             self.currposc=oldc
-            return False
+            raise NoPathException
         return True
 
     def moveRight(self):
@@ -47,21 +54,21 @@ class Play():
         self.currposc+=1
         if (self.currposc>len(self.map[0])-1) or (self.map[self.currposr][self.currposc]==0):
             self.currposc=oldc
-            return False
+            raise NoPathException
         return True            
     def moveUp(self):
         oldr=self.currposr
         self.currposr-=1
         if (self.currposr<0) or (self.map[self.currposr][self.currposc]==0):
             self.currposr=oldr
-            return False
+            raise NoPathException
         return True
     def moveDown(self):
         oldr=self.currposr
         self.currposr+=1
         if (self.currposr>len(self.map)-1) or (self.map[self.currposr][self.currposc]==0):
             self.currposr=oldr
-            return False
+            raise NoPathException
         return True
     def printMap(self):
         i=len(self.map)
