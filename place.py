@@ -1,14 +1,11 @@
 from art import *
 class Place():
-    def __init__(self,r,c,pic=None,message=None,desc=None,act=None):
+    def __init__(self,r,c,options,actions=None,message=[]):
         self.r=r
         self.c=c
-        self.pic=pic
         self.message=message
-        self.desc=desc
-        self.act=act
-    def printCoord(self):
-        print('({:d},{:d})'.format(self.r, self.c), end=' ')
+        self.options=options
+        self.actions=actions
     def printPic(self):
         if self.pic != None:
             for i in self.pic:
@@ -16,13 +13,22 @@ class Place():
         if self.message !=None:
             for i in self.message:
                 print(i)
-        '''
-        try:
-            i=len(self.pic)
-            for row in range(i):
-                for j in self.pic[row]:
-                    print(j,end='')
-                print()
-        except:
-            print(self.pic)
-        '''
+    def renderPlace(self):
+        #self.printPic()
+        for i in self.message:
+            print(i)
+        print('-'*50)
+    def chooseOption(self,ch):
+        if ch!=None:
+            if ch in self.options:
+                return self.options[ch]
+            elif ch in self.actions:
+                return self.actions[ch]
+            elif ch.lower() in ['q','quit']:
+                return False
+            else:
+                return []
+        else:
+            return []
+            
+            

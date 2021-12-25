@@ -1,90 +1,37 @@
 from place import Place
 import map
+import home
+from art import *
 from termcolor import colored, cprint     # For Termcolor
 from myExceptions import NoPathException, InvalidCommandException
+from stories import Stories
+import os
 class Play():
-    def __init__(self,map):
-        self.map=map
-        self.currposr=0
-        self.currposc=0
+    def __init__(self):
         self.running=True
+        self.key=None
     def run(self):
-        self.printMap()
-        self.place=self.map[self.currposr][self.currposc]
-        self.place.printPic()
-        while self.running==True:
-            key=input().lower()
-            try:
-                returnval=self.handleKeys(key)
-                if returnval:
-                    self.place=self.map[self.currposr][self.currposc]
-                    self.place.printPic()
+        while self.running:
+            self.key=home.runHome()
+            listStories=os.listdir('stories')
+            if self.key.lower() in ('p','play'):
+                print('     -- Choose a Story --')
+                for i in range(len(listStories)):
+                    print('\t',i+1,'.',listStories[i].rstrip('.json'))
+                ch=int(input('>>> '))
+                if ch<=len(listStories):
+                    story=Stories(listStories[ch-1])
+                    story.run()
                 else:
-                    print(colored('quitting', 'yellow', 'on_blue', attrs=['blink', 'bold']))
-            except NoPathException:
-                print(colored("Path not available", 'yellow', 'on_red', attrs=['blink', 'bold']))
-            except InvalidCommandException:
-                print(colored("Invalid Command", 'yellow', 'on_red', attrs=['blink', 'bold']))
-
-            
-    def handleKeys(self,key):
-        if key=='left':
-            return self.moveLeft()
-        elif key=='right':
-            return self.moveRight()
-        elif key=='back':
-            return self.moveDown()
-        elif key=='ahead':
-            return self.moveUp()
-        elif key=='q' or key=='quit':
-            self.running=False
-            return False
-        else:
-            raise InvalidCommandException 
-
-    def moveLeft(self):
-        oldc=self.currposc
-        self.currposc-=1
-        if (self.currposc<0) or (self.map[self.currposr][self.currposc]==0):
-            self.currposc=oldc
-            raise NoPathException
-        return True
-
-    def moveRight(self):
-        oldc=self.currposc
-        self.currposc+=1
-        if (self.currposc>len(self.map[0])-1) or (self.map[self.currposr][self.currposc]==0):
-            self.currposc=oldc
-            raise NoPathException
-        return True            
-    def moveUp(self):
-        oldr=self.currposr
-        self.currposr-=1
-        if (self.currposr<0) or (self.map[self.currposr][self.currposc]==0):
-            self.currposr=oldr
-            raise NoPathException
-        return True
-    def moveDown(self):
-        oldr=self.currposr
-        self.currposr+=1
-        if (self.currposr>len(self.map)-1) or (self.map[self.currposr][self.currposc]==0):
-            self.currposr=oldr
-            raise NoPathException
-        return True
-    def printMap(self):
-        i=len(self.map)
-        j=len(self.map[0])
-        print('='*(j+3)) 
-        print(format("Map", " ^"+str(j+3)))
-        print('-'*(j+3))
-        for row in range(i):
-            for col in range(j):
-                if self.map[row][col]!=0:
-                    print('X',end=' ')
-                else:
-                    print(' ', end=' ')
-            print()
-        print('='*(j+3))
-map=map.populate("places.json")
-p1=Play(map)
+                    print('--> Story not available! <--') 
+            elif self.key.lower() in ('rules', 'r'):
+                self.key=home.runRules()
+            elif self.key.lower()=='back':
+                self.key=home.runHome()
+            elif self.key.lower() in ('q', 'quit'):
+                self.running= False
+            else:
+                print('--> Invalid command! <--')
+    
+p1=Play()
 p1.run()    

@@ -9,8 +9,8 @@ def populate(fname):
         with open(fname,'r') as plcdat:
             data=plcdat.read()
         datalist=json.loads(data)
-        for data in datalist:
-            p = Place(**data)
+        for i in range(len(datalist)):
+            p = Place(**datalist[i])
             places.append(p)
             if p.r > maxr:
                 maxr = p.r
