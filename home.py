@@ -29,7 +29,7 @@ def run():
 """
 
 def runHome():
-    print('\t\t\t\t',text2art('Home'))
+    print(text2art('Home'))
     print('''
             1. Enter P/p to play
             2. Enter Q/q to quit
@@ -40,7 +40,7 @@ def runHome():
     
 def runRules():
     print()
-    print('\t\t\t\t',text2art('Rules'))
+    print(text2art('Rules'))
     print('''
             1. Enter commands
             2. Enjoy the story

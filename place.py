@@ -1,6 +1,6 @@
 from art import *
 class Place():
-    def __init__(self,r,c,options,actions=None,message=[]):
+    def __init__(self,r,c,options,actions=[],message=[]):
         self.r=r
         self.c=c
         self.message=message
@@ -19,7 +19,7 @@ class Place():
             print(i)
         print('-'*50)
     def chooseOption(self,ch):
-        if ch!=None:
+        if ch is not None:
             if ch in self.options:
                 return self.options[ch]
             elif ch in self.actions:
