@@ -40,6 +40,18 @@
         }
     },
     {
+        "r":0,
+        "c":2,
+        "message":[
+            "---Something happens not decided yet---",
+            "Options:-",
+            "1. go back to first choice"
+        ],
+        "options":{
+            "1":[0,0]
+        }
+    },
+    {
         "r":1,
         "c":0,
         "message":[
