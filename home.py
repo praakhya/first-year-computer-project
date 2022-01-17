@@ -31,9 +31,9 @@ def run():
 def runHome():
     print(text2art('Home'))
     print('''
-            1. Enter P/p to play
-            2. Enter Q/q to quit
-            3. Enter rules to view rules
+            Enter 'P' or 'p' to play
+            Enter 'Q' or 'q' to quit
+            Enter 'rules' to view rules
     ''')
     key=input('>>> ')
     return key
@@ -44,6 +44,7 @@ def runRules():
     print('''
             1. Enter commands
             2. Enjoy the story
+<< Enter 'back' to return
     ''')
     key=input('>>> ')
     return key

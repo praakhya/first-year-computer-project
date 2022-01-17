@@ -3,6 +3,7 @@ from termcolor import colored
 from myExceptions import *
 from place import Place
 import time, os
+from loading import qt as quit, st as start
 class Stories():
     def __init__(self, name):
         self.map=map.populate('stories/'+name)
@@ -13,6 +14,7 @@ class Stories():
     def run(self):
         self.printMap()
         time.sleep(2)
+        start()
         while self.running:
             self.currPlace.renderPlace()
             if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
@@ -25,9 +27,6 @@ class Stories():
                 time.sleep(2)
                 os.system('cls')
             elif chosen==False:
-                os.system('cls')
-                print(colored("Quitting", 'yellow', 'on_blue', attrs=['blink', 'bold']))
-                time.sleep(2)
                 self.running=False
                 break
             else:
@@ -36,7 +35,7 @@ class Stories():
                     self.currPlace=self.currentPlace()
                 except:
                     print(chosen)
-        os.system('cls')
+        quit()
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
