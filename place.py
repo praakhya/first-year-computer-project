@@ -1,4 +1,5 @@
 from art import *
+import os
 class Place():
     def __init__(self,r,c,options,actions=[],message=[]):
         self.r=r
@@ -14,6 +15,7 @@ class Place():
             for i in self.message:
                 print(i)
     def renderPlace(self):
+        os.system('cls')
         #self.printPic()
         for i in self.message:
             print(i)

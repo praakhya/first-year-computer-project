@@ -5,7 +5,7 @@ from art import *
 from termcolor import colored, cprint     # For Termcolor
 from myExceptions import NoPathException, InvalidCommandException
 from stories import Stories
-import os
+import os, time
 class Play():
     def __init__(self):
         self.running=True
@@ -29,7 +29,10 @@ class Play():
             elif self.key.lower()=='back':
                 self.key=home.runHome()
             elif self.key.lower() in ('q', 'quit'):
+                print(colored("Quitting", 'yellow', 'on_blue', attrs=['blink', 'bold']))
                 self.running= False
+                time.sleep(2)
+                os.system('cls')
             else:
                 print('--> Invalid command! <--')
     

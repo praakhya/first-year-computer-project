@@ -2,6 +2,7 @@ import map
 from termcolor import colored
 from myExceptions import *
 from place import Place
+import time, os
 class Stories():
     def __init__(self, name):
         self.map=map.populate('stories/'+name)
@@ -11,6 +12,7 @@ class Stories():
         self.running=True
     def run(self):
         self.printMap()
+        time.sleep(2)
         while self.running:
             self.currPlace.renderPlace()
             if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
@@ -20,8 +22,12 @@ class Stories():
             chosen=self.currPlace.chooseOption(ch)
             if chosen==[]:
                 print('--> Option/Interaction invalid! <--')
+                time.sleep(2)
+                os.system('cls')
             elif chosen==False:
+                os.system('cls')
                 print(colored("Quitting", 'yellow', 'on_blue', attrs=['blink', 'bold']))
+                time.sleep(2)
                 self.running=False
                 break
             else:
@@ -30,6 +36,7 @@ class Stories():
                     self.currPlace=self.currentPlace()
                 except:
                     print(chosen)
+        os.system('cls')
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
