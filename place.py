@@ -17,6 +17,7 @@ class Place():
     def renderPlace(self):
         os.system('cls')
         #self.printPic()
+        os.system("cls")
         for i in self.message:
             print(i)
         print('-'*50)
