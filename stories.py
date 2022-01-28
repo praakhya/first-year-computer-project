@@ -1,40 +1,42 @@
 import map
-from termcolor import colored
+#from termcolor import colored
 from myExceptions import *
 from place import Place
 import time, os
-from loading import qt as quit, st as start
+import tkinter as tk
 class Stories():
-    def __init__(self, name):
-        self.map=map.populate('stories/'+name)
+    def __init__(self, name, master):
+        print('init stories')
         self.curr_r=0
         self.curr_c=0
-        self.currPlace=self.currentPlace()
         self.running=True
+        self.master=master
+        self.map=map.populate(self.master,'stories/'+name)
+        self.currPlace=self.currentPlace()
     def run(self):
         self.printMap()
-        time.sleep(2)
-        start()
+        #self.master.mainloop()
+        print('in stories object')
         while self.running:
+            print('new run loop')
             self.currPlace.renderPlace()
             if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
                 self.running=False
                 break
             ch=input('>>> ')
             chosen=self.currPlace.chooseOption(ch)
-            if chosen==[]:
-                print('--> Option/Interaction invalid! <--')
-                time.sleep(2)
-                os.system('cls')
-            elif chosen==False:
-                self.running=False
-                break
-            else:
-                try:
-                    self.curr_r,self.curr_c=int(chosen[0]), int(chosen[1])
-                    self.currPlace=self.currentPlace()
-                except:
-                    print(chosen)
+            #if chosen==[]:
+            #    print('--> Option/Interaction invalid! <--')
+            #    os.system('cls')
+            #elif chosen==False:
+            #    self.running=False
+            #    break
+            #else:
+            try:
+                self.curr_r,self.curr_c=int(chosen[0]), int(chosen[1])
+                self.currPlace=self.currentPlace()
+            except:
+                print(chosen)
         quit()
     def printMap(self):
         i=len(self.map)
@@ -49,6 +51,7 @@ class Stories():
                 else:
                     print(' ', end=' ')
             print()
+        
         print('='*(j+3))
     def currentPlace(self):
         for i in self.map:
@@ -58,10 +61,7 @@ class Stories():
                         opt=j.options
                         act=j.actions
                         message=j.message
-                        return Place(self.curr_r, self.curr_c, opt, act,message)
-        
-        
-        
+                        return Place(self.master,self.curr_r, self.curr_c, opt, act,message)
 '''        
 try:
     pass        

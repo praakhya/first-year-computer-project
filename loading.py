@@ -1,5 +1,7 @@
 import time, os
-from termcolor import colored, cprint     # For Termcolor
+from tkinter import HORIZONTAL
+#from tkinter import *
+from tkinter.ttk import *
 def ld(t=1.5):
     numBars=10
     timeEach=t/numBars
@@ -13,10 +15,6 @@ def ld(t=1.5):
     print('|<--')
 
 def qt():
-    print(colored("Quitting", 'yellow', 'on_blue', attrs=['blink', 'bold']))
+    #print(colored("Quitting", 'yellow', 'on_blue', attrs=['blink', 'bold']))
     ld()
     os.system('cls')
-def st():
-    os.system('cls')
-    print(colored("Starting", 'cyan', attrs=['bold', 'dark']))
-    ld()

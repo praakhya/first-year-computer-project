@@ -2,16 +2,9 @@
     {
         "r":0,
         "c":0,
-        "message":[
-            "This is the story of a young girl ,Luciana who was brought up by her mom and grandma .",
-            "Despite having all provisions at her disposal ,she felt a sort of emptiness in her life which",
-            "made her feel lonely a lot of times and she would always wonder what it would be like to have",
-            "a bigger family or at least get to know people in her family who she had been cut off from for years.", 
-            "One day while on holiday in miami she goes walking on the beach. There she spots a shining pendant in the sand...",
-            "Options:-",
-            "1. Pick up the pendant",
-            "2. Leave it alone and walk on"
-        ],
+        "message":
+            "This is the story of a young girl ,Luciana who was brought up by her mom and grandma .Despite having all provisions at her disposal ,she felt a sort of emptiness in her life which made her feel lonely a lot of times and she would always wonder what it would be like to have a bigger family or at least get to know people in her family who she had been cut off from for years. One day while on holiday in miami she goes walking on the beach. There she spots a shining pendant in the sand...\nOptions:-\n1. Pick up the pendant\n2. Leave it alone and walk on"
+        ,
         "options":{
             "1":[0,1],
             "2":[1,0]

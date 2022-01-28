@@ -1,6 +1,7 @@
 from art import *
 from stories import Stories
 import os
+        
 """
 def run():
     rules=''' '''
@@ -28,24 +29,5 @@ def run():
             return False
 """
 
-def runHome():
-    print(text2art('Home'))
-    print('''
-            Enter 'P' or 'p' to play
-            Enter 'Q' or 'q' to quit
-            Enter 'rules' to view rules
-    ''')
-    key=input('>>> ')
-    return key
-    
-def runRules():
-    print()
-    print(text2art('Rules'))
-    print('''
-            1. Enter commands
-            2. Enjoy the story
-<< Enter 'back' to return
-    ''')
-    key=input('>>> ')
-    return key
+
            
