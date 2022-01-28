@@ -1,6 +1,3 @@
-import map
-#from termcolor import colored
-from myExceptions import *
 from place import Place
 import time, os
 import tkinter as tk
