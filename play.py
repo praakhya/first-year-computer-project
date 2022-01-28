@@ -1,15 +1,9 @@
-'''
-from place import Place
-import map
-import home
-from art import *
-from myExceptions import NoPathException, InvalidCommandException
-from loading import qt as quit
-'''
+from rules import Rules
 from stories import Stories
+from quit import Quit
 import os, time
 from tkinter import *
-#from tkinter.ttk import *
+
 class Play():
     def __init__(self):
         self.master=Tk()
@@ -20,12 +14,10 @@ class Play():
     def run(self):
         self.master.mainloop()
     def getStory(self,sname, sframe):
-        print('in get stories')
         self.story=Stories(sname,self,self.master)
         sframe.destroy()
         self.story.run()   
     def choose(self):
-        print('in choose')
         listStories=os.listdir('stories')
         storyFr=Frame(self.master, padx=10, pady=10, bg='black')
         for story in listStories:
@@ -34,12 +26,12 @@ class Play():
         storyFr.pack()
 
     def rules(self):
-        print('in rules')
-        return
+        r=Rules(self).run()
     def quit(self):
-        self.master.destroy()
+        q=Quit(self).show()
     
     def render(self):
+        self.master.title('Text Game')
         self.mFrame=Frame(self.master, padx=5,pady=5,bg='black')
         self.lblFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
         self.btnFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
@@ -53,33 +45,6 @@ class Play():
                 widget.pack()
             frame.pack()
         self.mFrame.pack()
-
-    
-    
-        '''
-        if self.key.lower() in ('p','play'):
-            print('     -- Choose a Story --')
-            for i in range(len(listStories)):
-                print('\t',i+1,'.',listStories[i].rstrip('.json'))
-            ch=int(input('>>> '))
-            if ch<=len(listStories):
-                story=Stories(listStories[ch-1])
-                story.run()
-            else:
-                print('--> Story not available! <--') 
-        elif self.key.lower() in ('rules', 'r'):
-            self.key=home.runRules()
-        elif self.key.lower()=='back':
-            self.key=home.runHome()
-        elif self.key.lower() in ('q', 'quit'):
-            self.running= False
-            quit()
-        else:
-            print('--> Invalid command! <--')
-    print('GUI')
-    '''
-    
-        
     
 p1=Play()
 p1.run()    

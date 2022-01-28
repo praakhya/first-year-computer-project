@@ -59,9 +59,8 @@
     {
         "r":1,
         "c":3,
-        "message":[
-            "Game ends"
-        ],
+        "message":"Game ends"
+        ,
         "options":{
             "Finish":[-1,-1]       
         }
