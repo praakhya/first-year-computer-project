@@ -4,27 +4,29 @@ from myExceptions import *
 from place import Place
 import time, os
 import tkinter as tk
+import json
 class Stories():
-    def __init__(self, name, master):
+    def __init__(self, name, play, master):
         print('init stories')
         self.curr_r=0
         self.curr_c=0
-        self.running=True
+        #self.running=True
         self.master=master
-        self.map=map.populate(self.master,'stories/'+name)
-        self.currPlace=self.currentPlace()
+        self.map=self.populate('stories/'+name)
+        self.play=play
     def run(self):
         self.printMap()
         #self.master.mainloop()
         print('in stories object')
-        while self.running:
-            print('new run loop')
-            self.currPlace.renderPlace()
-            if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
-                self.running=False
-                break
-            ch=input('>>> ')
-            chosen=self.currPlace.chooseOption(ch)
+        #while self.running:
+        print('new run loop')
+        self.currentPlace().renderPlace()
+        '''
+        if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
+            self.running=False
+        '''
+        ch=input('>>> ')
+            #chosen=self.currentPlace().chooseOption(ch)
             #if chosen==[]:
             #    print('--> Option/Interaction invalid! <--')
             #    os.system('cls')
@@ -32,12 +34,61 @@ class Stories():
             #    self.running=False
             #    break
             #else:
-            try:
-                self.curr_r,self.curr_c=int(chosen[0]), int(chosen[1])
-                self.currPlace=self.currentPlace()
-            except:
-                print(chosen)
+            #try:
+            #    self.curr_r,self.curr_c=int(chosen[0]), int(chosen[1])
+            #except:
+                #print(chosen)
         quit()
+    def btnClick(self,loc):
+        print('clicked: ',loc)
+        self.currentPlace().clear()
+        if loc==[-1,-1]:
+            self.play.render()
+        else:
+            self.curr_r, self.curr_c=loc
+            self.currentPlace().renderPlace()
+            self.master.update()
+
+    def populate(self,fname):
+        print('in map-populate')
+        places = []
+        maxr=0
+        maxc=0
+        map=[]
+        #try:
+        print('in try')
+        with open(fname,'r') as plcdat:
+            data=plcdat.read()
+        print('read data')
+        datalist=json.loads(data)
+        print('data loaded in list')
+        for i in range(len(datalist)):
+            print('1')
+            p = Place(self.master,self,"btnClick",**datalist[i])
+            print('2')
+            places.append(p)
+            print('3')
+            if p.r > maxr:
+                maxr = p.r
+            print('4')
+            if p.c > maxc:
+                maxc = p.c
+            print('making place objects')
+        maxr+=1;maxc+=1
+        #except:
+        #    print('in except')
+        #    pass
+        for i in range(maxr):
+            print('making zero matrix')
+            map.append([])
+            for j in range(maxc):
+                map[i].append(0)
+        for place in places:
+            print('making final map')
+            i=place.r
+            j=place.c
+            map[i][j]=place
+        return map
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
@@ -54,6 +105,7 @@ class Stories():
         
         print('='*(j+3))
     def currentPlace(self):
+        """
         for i in self.map:
             for j in i:
                 if j!=0:
@@ -61,7 +113,9 @@ class Stories():
                         opt=j.options
                         act=j.actions
                         message=j.message
-                        return Place(self.master,self.curr_r, self.curr_c, opt, act,message)
+        """
+        return self.map[self.curr_r][self.curr_c] #Place(self.master,self.curr_r, self.curr_c, opt, act,message)
+
 '''        
 try:
     pass        

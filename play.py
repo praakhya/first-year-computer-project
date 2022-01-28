@@ -15,25 +15,13 @@ class Play():
         self.master=Tk()
         self.master.geometry('500x500')
         self.master.configure(bg='black')
-        self.mFrame=Frame(self.master, padx=5,pady=5,bg='black')
-        self.lblFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
-        self.btnFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
-        self.playB=Button(self.btnFrame,text='Play',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.choose,pady=5)
-        self.ruleB=Button(self.btnFrame,text='Rules',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.rules,pady=5)
-        self.quitB=Button(self.btnFrame,text='Quit',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.quit,pady=5)
-        self.lhead=Label(self.lblFrame, text='Text a Story',font=('Courier 30 underline'),fg='white',bg='black')
-        self.lsub=Label(self.lblFrame, text='Choose an option to continue:-',font=('Courier 14'),fg='white',bg='black',pady=5)
+        self.render()
         self.story=None
     def run(self):
-        for frame in self.mFrame.winfo_children():
-            for widget in frame.winfo_children():
-                widget.pack()
-            frame.pack()
-        self.mFrame.pack()
         self.master.mainloop()
     def getStory(self,sname, sframe):
         print('in get stories')
-        self.story=Stories(sname,self.master)
+        self.story=Stories(sname,self,self.master)
         sframe.destroy()
         self.story.run()   
     def choose(self):
@@ -44,14 +32,28 @@ class Play():
             Button(storyFr,text=story.rstrip('.json'),bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=lambda s=story, sfr=storyFr: self.getStory(s,sfr),pady=5).pack()
         self.mFrame.destroy()
         storyFr.pack()
-        
-        self.master.mainloop()
-        return
+
     def rules(self):
         print('in rules')
         return
     def quit(self):
-        self.master.quit()
+        self.master.destroy()
+    
+    def render(self):
+        self.mFrame=Frame(self.master, padx=5,pady=5,bg='black')
+        self.lblFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
+        self.btnFrame=Frame(self.mFrame, padx=5,pady=5,bg='black')
+        self.playB=Button(self.btnFrame,text='Play',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.choose,pady=5)
+        self.ruleB=Button(self.btnFrame,text='Rules',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.rules,pady=5)
+        self.quitB=Button(self.btnFrame,text='Quit',bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=self.quit,pady=5)
+        self.lhead=Label(self.lblFrame, text='Text a Story',font=('Courier 30 underline'),fg='white',bg='black')
+        self.lsub=Label(self.lblFrame, text='Choose an option to continue:-',font=('Courier 14'),fg='white',bg='black',pady=5)
+        for frame in self.mFrame.winfo_children():
+            for widget in frame.winfo_children():
+                widget.pack()
+            frame.pack()
+        self.mFrame.pack()
+
     
     
         '''

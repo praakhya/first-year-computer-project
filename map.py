@@ -1,5 +1,7 @@
+'''
 import json
 from place import Place
+
 def populate(master,fname):
     print('in map-populate')
     places = []
@@ -40,3 +42,4 @@ def populate(master,fname):
         j=place.c
         map[i][j]=place
     return map
+'''
