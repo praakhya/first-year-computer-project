@@ -4,7 +4,6 @@ import tkinter as tk
 import json
 class Stories():
     def __init__(self, name, play, master):
-        print('init stories')
         self.curr_r=0
         self.curr_c=0
         self.master=master
@@ -14,9 +13,10 @@ class Stories():
     def run(self):
         self.printMap()
         self.currentPlace().renderPlace()
-        ch=input('>>> ')
-        quit()
+        #ch=input('>>> ')
+        #quit()
     def btnClick(self,loc):
+        #print(loc)
         self.currentPlace().clear()
         if loc==[-1,-1]:
             self.play.render()
@@ -34,13 +34,12 @@ class Stories():
             data=plcdat.read()
         datalist=json.loads(data)
         for i in range(len(datalist)):
+            print(i)
+            print(datalist[i])
             p = Place(self.master,self,"btnClick",**datalist[i])
-            print('2')
             places.append(p)
-            print('3')
             if p.r > maxr:
                 maxr = p.r
-            print('4')
             if p.c > maxc:
                 maxc = p.c
         maxr+=1;maxc+=1
