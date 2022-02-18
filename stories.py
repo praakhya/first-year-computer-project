@@ -15,13 +15,17 @@ class Stories():
         self.currentPlace().renderPlace()
         #ch=input('>>> ')
         #quit()
-    def btnClick(self,loc):
+    def btnClick(self,loc,time):
         #print(loc)
         self.currentPlace().clear()
+        print(time)
         if loc==[-1,-1]:
             self.play.render()
         else:
-            self.curr_r, self.curr_c=loc
+            if time>=0.30:
+                self.curr_r, self.curr_c=[3,3]
+            else:
+                self.curr_r, self.curr_c=loc
             self.currentPlace().renderPlace()
             self.master.update()
 

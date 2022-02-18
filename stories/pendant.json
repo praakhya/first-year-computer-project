@@ -59,10 +59,17 @@
     {
         "r":1,
         "c":3,
-        "message":"Game ends"
-        ,
+        "message":"Game ends",
         "options":{
             "Finish":[-1,-1]       
+        }
+    },
+    {
+        "r":3,
+        "c":3,
+        "message": "Time exceeded!",
+        "options":{
+            "Finish":[-1,-1]
         }
     }
 
