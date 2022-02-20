@@ -1,3 +1,4 @@
+from timedPlace import TimedPlace as TPlace
 from place import Place
 import time, os
 import tkinter as tk
@@ -38,9 +39,10 @@ class Stories():
             data=plcdat.read()
         datalist=json.loads(data)
         for i in range(len(datalist)):
-            print(i)
-            print(datalist[i])
-            p = Place(self.master,self,"btnClick",**datalist[i])
+            if datalist[i]['timed']==True:
+                p = TPlace(self.master,self,"btnClick",**datalist[i])
+            else:
+                p = Place(self.master,self,"btnClick",**datalist[i])
             places.append(p)
             if p.r > maxr:
                 maxr = p.r
