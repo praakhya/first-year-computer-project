@@ -7,7 +7,9 @@ from tkinter import *
 class Play():
     def __init__(self):
         self.master=Tk()
-        self.master.geometry('500x500')
+        self.masterW='500'
+        self.masterH='500'
+        self.master.geometry(self.masterW+'x'+self.masterH)
         self.master.configure(bg='black')
         self.render()
         self.story=None
@@ -19,7 +21,7 @@ class Play():
         self.story.run()   
     def choose(self):
         listStories=os.listdir('stories')
-        storyFr=Frame(self.master, padx=10, pady=10, bg='black')
+        storyFr=Frame(self.master, width=self.masterW, height=self.masterH, padx=10, pady=10, bg='black')
         for story in listStories:
             Button(storyFr,text=story.rstrip('.json'),bg='black',fg='white',highlightbackground='white',highlightthickness=0.5,command=lambda s=story, sfr=storyFr: self.getStory(s,sfr),pady=5).pack()
         self.mFrame.destroy()

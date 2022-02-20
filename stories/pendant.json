@@ -30,7 +30,8 @@
             "After the skier goes away, Luciana looks around. She sees snow for miles ahead. She looks around for people to ask where she is. Soon she finds a small cozy wooden hut. She knocks at the door. When the door opens, she is shocked to find the same skier from earlier. With embarrassment she asks him for some shelter. He lets her in, offers her some food and clothes. He provides her information about the area so that she can explore. Thanking him for his help she takes his leave and goes in search of the town nearby.\nOptions:-\n"
         ,
         "options":{
-            "1. In progress: go back to first choice":[0,0]
+            "1. In progress: go back to first choice":[0,0],
+            "2. Quit":[1,3]
         },
         "timed":true
     },

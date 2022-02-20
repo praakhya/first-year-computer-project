@@ -14,6 +14,9 @@ class Place():
         self.callback = callback   
         self.timed=timed        
         self.btns=[]
+        self.width=self.master.winfo_width()
+        self.height=self.master.winfo_height()
+        print(self.width,self.height)
     def printPic(self):
         if self.message !=None:
             for i in self.message:
@@ -32,24 +35,16 @@ class Place():
             frame.pack()
         self.placeFrame.pack()
     def renderOnly(self):
-        #self.showOptions()
-        self.placeFrame=tk.Frame(self.master, padx=5, pady=5,bg='black')
+        self.placeFrame=tk.Frame(self.master, width=self.width, height=self.height, padx=5, pady=5,bg='black')
+        self.placeFrame.pack(expand=True, fill='both')
+        self.placeFrame.pack_propagate(0)
         self.lblFrame=tk.Frame(self.placeFrame, padx=5, pady=5,bg='black')
         self.btnFrame=tk.Frame(self.placeFrame, padx=5, pady=5,bg='black')
-        self.msgLabel=tk.Label(self.lblFrame, text=self.message, fg='white', bg='black',wraplength=450,pady=10).pack(side="top")
+        self.msgLabel=tk.Label(self.lblFrame, text=self.message, font=("Courier", 10), fg='white', bg='black',wraplength=self.width-10,pady=10).pack(side="top")
         for ch in self.options:
             self.btns.append(tk.Button(self.btnFrame, text=ch, fg="white", bg="black", padx=5, pady=5,highlightbackground="white", highlightthickness=0.5, command = lambda l=self.options[ch]: self.chooseOption(l)))
     def renderPlace(self):
         self.renderOnly()
         self.packPlace()
-        #activeTime=process_time()-self.startTime
-        #print(activeTime)
-        #if activeTime>=0.30:
-        #    print('OUT')
-            #self.chooseOption([1,3])
-        #else:
-        #print('IN')
     def clear(self):
-        #self.lblFrame.destroy()
-        #self.btnFrame.destroy()
         self.placeFrame.destroy()
