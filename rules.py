@@ -14,7 +14,9 @@ class Rules():
     def run(self):
         self.lblRule.pack(side='top',fill=BOTH, expand=True)
         self.btnClose.pack(side='bottom',expand=True)
+        self.master.grab_set_global()
         self.master.mainloop()    
     def closeRules(self):
+        self.master.grab_release()
         self.master.destroy()
         #self.play.render

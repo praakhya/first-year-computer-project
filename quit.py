@@ -11,9 +11,12 @@ class Quit():
         self.msg.grid(row=0)
         self.yes.grid(row=1, column=0)
         self.no.grid(row=1,column=1)
+        self.master.grab_set_global()
         self.master.mainloop()
     def quit(self):
+        self.master.grab_release()
         self.play.master.destroy()
         self.delSelf()
     def delSelf(self):
+        self.master.grab_release()
         self.master.destroy()
