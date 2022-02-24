@@ -61,17 +61,24 @@ class Stories():
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
-        print('='*(j+3)) 
-        print(format("Map", " ^"+str(j+3)))
-        print('-'*(j+3))
+        header="Map: Places to Go..."
+        if j>len(header):
+            n=j
+        else:
+            n=len(header)
+        n+=4
+        print('='*(n)) 
+        print(format(header, " ^"+str(n)))
+        print('-'*(n))
         for row in range(i):
+            rowi=''
             for col in range(j):
                 if self.map[row][col]!=0:
-                    print('X',end=' ')
+                    rowi+='X'
                 else:
-                    print(' ', end=' ')
-            print()
+                    rowi+=' '
+            print(format(rowi, " ^"+str(n)))
         
-        print('='*(j+3))
+        print('='*(n))
     def currentPlace(self):
         return self.map[self.curr_r][self.curr_c] 

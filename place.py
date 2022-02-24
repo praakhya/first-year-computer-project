@@ -16,7 +16,6 @@ class Place():
         self.btns=[]
         self.width=self.master.winfo_width()
         self.height=self.master.winfo_height()
-        print(self.width,self.height)
     def printPic(self):
         if self.message !=None:
             for i in self.message:
