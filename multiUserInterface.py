@@ -19,7 +19,7 @@ class MultiUserInterface():
         print(MultiUserInterface.userName)
         return True
     @staticmethod
-    def getServerData(newR,newC,server='testServer.json'):
+    def updatePlace(newR,newC,score,server='testServer.json'):
         data=mud(**read(server))
         MultiUserInterface.userScore=data.myScore
         plc={}
