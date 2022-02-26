@@ -1,0 +1,24 @@
+{
+    "placeData":
+        {
+            "0,0":{
+            "first":{"name":"something1","score":121244},
+            "second":{"name":"something2","score":121244},
+            "third":{"name":"something3","score":121244},
+            "count":331
+        },
+        "1,1":{
+            "first":{"name":"something1","score":121244},
+            "second":{"name":"something2","score":121244},
+            "third":{"name":"something3","score":121244},
+            "count":331
+        },
+        "2,2":{
+            "first":{"name":"something1","score":121244},
+            "second":{"name":"something2","score":121244},
+            "third":{"name":"something3","score":121244},
+            "count":331
+        }
+    },
+    "myScore":0
+}

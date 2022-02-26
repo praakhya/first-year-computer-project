@@ -3,6 +3,9 @@ from place import Place
 import time, os
 import tkinter as tk
 import json
+from readJson import read
+from multiUserInterface import MultiUserInterface as mui
+
 class Stories():
     def __init__(self, name, play, master):
         self.curr_r=0
@@ -35,9 +38,7 @@ class Stories():
         maxr=0
         maxc=0
         map=[]
-        with open(fname,'r') as plcdat:
-            data=plcdat.read()
-        datalist=json.loads(data)
+        datalist=read(fname)
         for i in range(len(datalist)):
             if datalist[i]['timed']==True:
                 p = TPlace(self.master,self,"btnClick",**datalist[i])

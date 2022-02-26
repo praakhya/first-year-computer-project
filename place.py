@@ -39,9 +39,10 @@ class Place():
         self.placeFrame.pack_propagate(0)
         self.lblFrame=tk.Frame(self.placeFrame, padx=5, pady=5,bg='black')
         self.btnFrame=tk.Frame(self.placeFrame, padx=5, pady=5,bg='black')
-        self.msgLabel=tk.Label(self.lblFrame, text=self.message, font=("Courier", 10), fg='white', bg='black',wraplength=self.width-10,pady=10).pack(side="top")
+        self.msgLabel=tk.Label(self.lblFrame, text=self.message, font=("Courier", 10), fg='white', bg='black',wraplength=self.width-10,pady=10)
         for ch in self.options:
             self.btns.append(tk.Button(self.btnFrame, text=ch, fg="white", bg="black", padx=5, pady=5,highlightbackground="white", highlightthickness=0.5, command = lambda l=self.options[ch]: self.chooseOption(l)))
+        
     def renderPlace(self):
         self.renderOnly()
         self.packPlace()

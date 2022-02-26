@@ -3,6 +3,7 @@ from stories import Stories
 from quit import Quit
 import os, time
 from tkinter import *
+from multiUserInterface import MultiUserInterface as mui
 
 class Play():
     def __init__(self):
@@ -14,6 +15,9 @@ class Play():
         self.render()
         self.story=None
     def run(self):
+        if mui.register(os.getlogin()):
+            print(os.getlogin())
+            print('-----',mui.userName,'-----',mui.userScore)
         self.master.mainloop()
     def getStory(self,sname, sframe):
         self.story=Stories(sname,self,self.master)
@@ -47,6 +51,7 @@ class Play():
                 widget.pack()
             frame.pack()
         self.mFrame.pack()
+
     
 p1=Play()
 p1.run()    
