@@ -49,4 +49,4 @@ class Play():
         self.mFrame.pack()
     
 p1=Play()
-p1.run()    
+p1.run()   

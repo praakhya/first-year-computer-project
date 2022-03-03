@@ -16,24 +16,18 @@ class Place():
         self.btns=[]
         self.width=self.master.winfo_width()
         self.height=self.master.winfo_height()
-    def printPic(self):
-        if self.message !=None:
-            for i in self.message:
-                print(i)
+        self.score=0
     def chooseOption(self,loc):
-        #self.clear()
         fn=getattr(self.story, self.callback)
-        fn(loc)
-        #return loc
-    def showOptions(self):
-        print(self.options)   
+        fn(loc,self.score)  
     def packPlace(self):
         for frame in self.placeFrame.winfo_children():
             for widget in frame.winfo_children():
                 widget.pack()
             frame.pack()
         self.placeFrame.pack()
-    def renderOnly(self):
+    def renderOnly(self,score):
+        self.score=score
         self.placeFrame=tk.Frame(self.master, width=self.width, height=self.height, padx=5, pady=5,bg='black')
         self.placeFrame.pack(expand=True, fill='both')
         self.placeFrame.pack_propagate(0)
@@ -41,9 +35,9 @@ class Place():
         self.btnFrame=tk.Frame(self.placeFrame, padx=5, pady=5,bg='black')
         self.msgLabel=tk.Label(self.lblFrame, text=self.message, font=("Courier", 10), fg='white', bg='black',wraplength=self.width-10,pady=10).pack(side="top")
         for ch in self.options:
-            self.btns.append(tk.Button(self.btnFrame, text=ch, fg="white", bg="black", padx=5, pady=5,highlightbackground="white", highlightthickness=0.5, command = lambda l=self.options[ch]: self.chooseOption(l)))
-    def renderPlace(self):
-        self.renderOnly()
+            self.btns.append(tk.Button(self.btnFrame, text=ch, fg="white", bg="black", padx=5, pady=5,highlightbackground="white", highlightthickness=0.5, wraplength=self.width-10,command = lambda l=self.options[ch]: self.chooseOption(l)))
+    def renderPlace(self,score):
+        self.renderOnly(score)
         self.packPlace()
     def clear(self):
         self.placeFrame.destroy()

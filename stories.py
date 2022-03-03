@@ -1,4 +1,5 @@
 from timedPlace import TimedPlace as TPlace
+from controlPlace import ControlPlace as CPlace
 from place import Place
 import time, os
 import tkinter as tk
@@ -11,23 +12,20 @@ class Stories():
         self.master.title(name.rstrip('.json'))
         self.map=self.populate('stories/'+name)
         self.play=play
+        self.score=0
     def run(self):
         self.printMap()
-        self.currentPlace().renderPlace()
-        #ch=input('>>> ')
-        #quit()
-    def btnClick(self,loc):
-        #print(loc)
+        self.currentPlace().renderPlace(self.score)
+    def btnClick(self,loc,score):
+        self.score+=score
         self.currentPlace().clear()
-        #print(time)
         if loc==[-1,-1]:
             self.play.render()
         else:
-            #if time>=0.30:
-            self.curr_r, self.curr_c=[3,3]
-            #else:
             self.curr_r, self.curr_c=loc
-            self.currentPlace().renderPlace()
+            if loc==[-2,-2] or loc==[0,0]:
+                self.score=0
+            self.currentPlace().renderPlace(self.score)
             self.master.update()
 
     def populate(self,fname):
@@ -42,7 +40,7 @@ class Stories():
             if datalist[i]['timed']==True:
                 p = TPlace(self.master,self,"btnClick",**datalist[i])
             else:
-                p = Place(self.master,self,"btnClick",**datalist[i])
+                p = CPlace(self.master,self,"btnClick",**datalist[i])
             places.append(p)
             if p.r > maxr:
                 maxr = p.r

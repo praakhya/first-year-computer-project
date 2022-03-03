@@ -1,0 +1,139 @@
+[
+    {
+        "r":0,
+        "c":0,
+        "message":
+            "The droplets of blood dripped along the floor towards the sink. The sink, still stained red from the blood being washed off earlier. The window where the knife had been thrown out was open, letting in a cool breeze.\nCameras flashed. Evidence tags were being placed sporadically. Unnecessarily. The books torn off the shelf were simply distractions. The broken lamp shoved from the bedside table was not out of rage, but out of love. Love for the art of murder. The young policeman next to me was giving the details.\nMy mind was elsewhere ,it was more akin to the aroma of sandalwood scented candles that wafted across the hall. A candle that was not lit by the victim.\nOptions:-\n"
+        ,
+        "options":{
+            "1. The murderer might be the childhood bestfriend of the victim .He always wore a sandalwood fragrance. Such amateur work!!!!":[0,5],
+            "2. Is it could be the neighbor who was unusually close to the victim .After all he was the one who reported the case and found the victim not responding to him even though he was continuously ringing his doorbell.":[1,0]
+        },
+        "timed":true
+    },
+    {
+        "r":0,
+        "c":5,
+        "message":
+            "\nOptions:-\n"
+        ,
+        "options":{
+            "1. Go and interrogate him.":[1,5],
+            "2. Check the crime scene so that it would be easier to arrest him with evidence.":[1,4],
+            "3. Just close the case.":[1,3]
+        },
+        "timed":true
+    },
+    {
+        "r":1,
+        "c":5,
+        "message":"\nOptions:-\n",
+        "options":{
+            "You go in search of him only to find that he had moved out of the country 25-hours before the approximate timing of the crime.":[2,5]
+        },
+        "timed":true
+
+    },
+    {
+        "r":2,
+        "c":5,
+        "message":"\nOptions:-\n",
+        "options":{
+            "1. End game?":[5,4],
+            "2. Restart?":[0,0]
+        },
+        "timed":true
+    },
+    {
+        "r":1,
+        "c":4,
+        "message":"\nOptions:-\n",
+        "options":{
+            "As you are looking around, you see that one of the forensic scientist is going towards the window. You ask her to take a look in the attic as it was the place  where the victim was found and there might be more evidences present closer to the scene.\n You wait for her to leave and check around and go towards the trash under the window and see your dear pocket knife, innocently sitting on the side of the bin.":[2,4]
+        },
+        "timed":true
+
+    },
+    {
+        "r":1,
+        "c":3,
+        "message":"\nOptions:-\n",
+        "options":{
+            "BAD CHOICE!! Your Higher Authorities were already suspicious about your previous cases. Your now officially fired!!":[2,5]
+        },
+        "timed":true
+
+    },
+    {
+        "r":2,
+        "c":4,
+        "message":"\nOptions:-\n",
+        "options":{
+            "1. Take it and keep it with you so that nobody can find it.":[2,5],
+            "2. Find a new spot to hide it!!":[2,5]
+        },
+        "timed":true
+
+    },
+    {
+        "r":1,
+        "c":0,
+        "message":"\nOptions:-\n",
+        "options":{
+            "Is it could be the neighbor who was unusually close to the victim .After all he was the one who reported the case and found the victim not responding to him even though he was continuously ringing his doorbell.":[1,1]
+        },
+        "timed":true
+
+    },
+    {
+        "r":1,
+        "c":1,
+        "message":"\nOptions:-\n",
+        "options":{
+            "1. Go and talk to him.":[2,0],
+            "2. Look at the new piece of evidence that one the forensic scientist has found.":[2,5],
+            "3. Close the case.":[1,3]
+        },
+        "timed":true
+
+    },
+    {
+        "r":2,
+        "c":0,
+        "message":"\nOptions:-\n",
+        "options":{
+            "You find out that his initial statements  are contradicting from the ones that he is giving now!!":[3,0]
+        },
+        "timed":true
+
+    },
+    {
+        "r":3,
+        "c":0,
+        "message":"\nOptions:-\n",
+        "options":{
+            "Just then you are being called to the crime scene by the forensic scientist. She says that she found a new piece of evidence, a pocket knife with your fingerprints all over them!!\nBad Choice Detective!!! Looks like the murderer was right there after all!!":[2,5]
+        },
+        "timed":true
+
+    },
+    {
+        "r":5,
+        "c":4,
+        "message":"Game ends",
+        "options":{
+            "Finish":[-1,-1]       
+        },
+        "timed":false
+    },
+    {
+        "r":-2,
+        "c":-2,
+        "message": "Time exceeded!",
+        "options":{
+            "Finish":[-1,-1]
+        },
+        "timed":false
+    }
+
+]

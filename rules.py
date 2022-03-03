@@ -4,7 +4,6 @@ class Rules():
         self.play=play
         self.master=Tk()
         self.master.title('Rules')
-        #self.master.geometry('200x100')
         self.master.configure(bg='black')
         self.ruleTxt="""In this game you can make you own
         story. All you have to do is read each prompt and make a choice.
@@ -19,4 +18,3 @@ class Rules():
     def closeRules(self):
         self.master.grab_release()
         self.master.destroy()
-        #self.play.render
