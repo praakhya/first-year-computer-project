@@ -6,6 +6,9 @@ from place import Place
 class ControlPlace(Place):
     def __init__(self,master,story, callback, r,c,options,timed,actions=[],message=[]):
         super().__init__(master,story, callback, r,c,options,timed,actions,message)
+    def chooseOption(self,loc):
+        self.score+=0
+        super().chooseOption(loc)
     def renderPlace(self,score):
         super().renderOnly(score)
         scrTxt="Your Score!\n{}".format(self.score)

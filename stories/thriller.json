@@ -42,7 +42,7 @@
             "1. End game?":[5,4],
             "2. Restart?":[0,0]
         },
-        "timed":true
+        "timed":false
     },
     {
         "r":1,

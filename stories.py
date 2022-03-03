@@ -17,7 +17,7 @@ class Stories():
         self.printMap()
         self.currentPlace().renderPlace(self.score)
     def btnClick(self,loc,score):
-        self.score+=score
+        self.score=score
         self.currentPlace().clear()
         if loc==[-1,-1]:
             self.play.render()
