@@ -6,7 +6,7 @@ from place import Place
 class TimedPlace(Place):
     def __init__(self,master,story, callback, r,c,options,timed,actions=[],message=[]):
         super().__init__(master,story, callback, r,c,options,timed,actions,message)
-        self.processTime=30
+        self.processTime=60
         self.placeScore=self.processTime*15
     def chooseOption(self,loc):
         self.score+=self.placeScore
