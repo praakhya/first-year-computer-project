@@ -1,5 +1,3 @@
-#from art import *
-import os
 import tkinter as tk
 from time import process_time
 from gameStyle import GameStyle as gs
