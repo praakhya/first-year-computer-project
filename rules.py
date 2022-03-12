@@ -6,6 +6,7 @@ class Rules():
         self.master=Tk()
         self.master.title('Rules')
         self.master.configure(bg='black')
+        self.master.geometry('200x300')
         self.ruleTxt="""
         In this game you can make you own
         story. All you have to do is read each prompt and make a choice.
