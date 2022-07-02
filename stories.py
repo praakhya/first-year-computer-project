@@ -1,116 +1,82 @@
-import map
-from termcolor import colored
-from myExceptions import *
+from timedPlace import TimedPlace as TPlace
+from controlPlace import ControlPlace as CPlace
 from place import Place
 import time, os
-from loading import qt as quit, st as start
+import tkinter as tk
+import json
 class Stories():
-    def __init__(self, name):
-        self.map=map.populate('stories/'+name)
+    def __init__(self, name, play, master):
         self.curr_r=0
         self.curr_c=0
-        self.currPlace=self.currentPlace()
-        self.running=True
+        self.master=master
+        self.master.title(name.rstrip('.json'))
+        self.map=self.populate('stories/'+name)
+        self.play=play
+        self.score=0
     def run(self):
         self.printMap()
-        time.sleep(2)
-        start()
-        while self.running:
-            self.currPlace.renderPlace()
-            if (self.curr_r==len(self.map)-1) and (self.curr_c==len(self.map[0])-1):
-                self.running=False
-                break
-            ch=input('>>> ')
-            chosen=self.currPlace.chooseOption(ch)
-            if chosen==[]:
-                print('--> Option/Interaction invalid! <--')
-                time.sleep(2)
-                os.system('cls')
-            elif chosen==False:
-                self.running=False
-                break
+        self.currentPlace().renderPlace(self.score)
+    def btnClick(self,loc,score):   
+        self.score=score
+        self.currentPlace().clear()
+        if loc==[-1,-1]:
+            self.play.render()
+        else:
+            self.curr_r, self.curr_c=loc
+            if loc==[-2,-2] or loc==[0,0]:
+                self.score=0
+            self.currentPlace().renderPlace(self.score)
+            self.master.update()
+
+    def populate(self,fname):
+        places = []
+        maxr=0
+        maxc=0
+        map=[]
+        with open(fname,'r') as plcdat:
+            data=plcdat.read()
+        datalist=json.loads(data)
+        for i in range(len(datalist)):
+            if datalist[i]['timed']==True:
+                p = TPlace(self.master,self,"btnClick",**datalist[i])
             else:
-                try:
-                    self.curr_r,self.curr_c=int(chosen[0]), int(chosen[1])
-                    self.currPlace=self.currentPlace()
-                except:
-                    print(chosen)
-        quit()
+                p = CPlace(self.master,self,"btnClick",**datalist[i])
+            places.append(p)
+            if p.r > maxr:
+                maxr = p.r
+            if p.c > maxc:
+                maxc = p.c
+        maxr+=1;maxc+=1
+        for i in range(maxr):
+            map.append([])
+            for j in range(maxc):
+                map[i].append(0)
+        for place in places:
+            i=place.r
+            j=place.c
+            map[i][j]=place
+        return map
     def printMap(self):
         i=len(self.map)
         j=len(self.map[0])
-        print('='*(j+3)) 
-        print(format("Map", " ^"+str(j+3)))
-        print('-'*(j+3))
+        header="Map: Places to Go..."
+        if j>len(header):
+            n=j
+        else:
+            n=len(header)
+        n+=4
+        print('='*(n)) 
+        print(format(header, " ^"+str(n)))
+        print('-'*(n))
         for row in range(i):
+            rowi=''
             for col in range(j):
                 if self.map[row][col]!=0:
-                    print('X',end=' ')
+                    rowi+='X'
                 else:
-                    print(' ', end=' ')
-            print()
-        print('='*(j+3))
+                    rowi+=' '
+            print(format(rowi, " ^"+str(n)))
+        
+        print('='*(n))
     def currentPlace(self):
-        for i in self.map:
-            for j in i:
-                if j!=0:
-                    if j.r==self.curr_r and j.c==self.curr_c:
-                        opt=j.options
-                        act=j.actions
-                        message=j.message
-                        return Place(self.curr_r, self.curr_c, opt, act,message)
-        
-        
-        
-'''        
-try:
-    pass        
-except NoPathException:
-    print(colored("Path not available", 'yellow', 'on_red', attrs=['blink', 'bold']))
-except InvalidCommandException:
-    print(colored("Invalid Command", 'yellow', 'on_red', attrs=['blink', 'bold']))
-def handleKeys(self,key):
-        if key=='left':
-            return self.moveLeft()
-        elif key=='right':
-            return self.moveRight()
-        elif key=='back':
-            return self.moveDown()
-        elif key=='ahead':
-            return self.moveUp()
-        elif key=='q' or key=='quit':
-            self.running=False
-            return False
-        else:
-            raise InvalidCommandException 
-
-def moveLeft(self):
-    oldc=self.currposc
-    self.currposc-=1
-    if (self.currposc<0) or (self.map[self.currposr][self.currposc]==0):
-        self.currposc=oldc
-        raise NoPathException
-    return True
-
-def moveRight(self):
-    oldc=self.currposc
-    self.currposc+=1
-    if (self.currposc>len(self.map[0])-1) or (self.map[self.currposr][self.currposc]==0):
-        self.currposc=oldc
-        raise NoPathException
-    return True            
-def moveUp(self):
-    oldr=self.currposr
-    self.currposr-=1
-    if (self.currposr<0) or (self.map[self.currposr][self.currposc]==0):
-        self.currposr=oldr
-        raise NoPathException
-    return True
-def moveDown(self):
-    oldr=self.currposr
-    self.currposr+=1
-    if (self.currposr>len(self.map)-1) or (self.map[self.currposr][self.currposc]==0):
-        self.currposr=oldr
-        raise NoPathException
-    return True
-'''
+        return self.map[self.curr_r][self.curr_c] 
